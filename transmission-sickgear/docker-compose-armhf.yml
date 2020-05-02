@@ -1,0 +1,37 @@
+version: '3.3'
+services:
+  transmission-openvpn:
+    volumes:
+      - ~/.docker/volumes/transmission:/data/transmission-home
+      - ~/Downloads:/downloads
+    env_file:
+      - .env
+    cap_add:
+      - NET_ADMIN
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+    ports:
+      - '9091:9091'
+    image: haugene/transmission-openvpn:latest-armhf
+    dns:
+      - 1.1.1.1
+      - 1.0.0.1
+
+  sickgear:
+    image: linuxserver/sickgear
+    container_name: sickgear
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+    volumes:
+      - ~/.docker/volumes/sickgear:/config
+      - ~/Downloads/watching/:/downloads
+      - ~/Downloads/completed:/tv
+    ports:
+      - 8081:8081
+    restart: unless-stopped
+    links:
+      - transmission-openvpn
