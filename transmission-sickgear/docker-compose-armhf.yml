@@ -29,7 +29,7 @@ services:
       - PGID=0
     volumes:
       - ~/.docker/volumes/sickgear:/config
-      - /var/nfs/saito/Series:/tv
+      - ~/Downloads/completed/Series:/tv
       - ~/Downloads/incoming:/downloads/incoming
       - ~/Downloads/watching:/downloads/watching
     ports:
