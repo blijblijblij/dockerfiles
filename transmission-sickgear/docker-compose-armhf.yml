@@ -3,7 +3,8 @@ services:
   transmission-openvpn:
     volumes:
       - ~/.docker/volumes/transmission:/data/transmission-home
-      - ~/Downloads:/downloads
+      - ~/Downloads/incoming:/downloads/incoming
+      - ~/Downloads/watching:/downloads/watching
     env_file:
       - .env
     cap_add:
@@ -23,15 +24,19 @@ services:
     image: linuxserver/sickgear
     container_name: sickgear
     environment:
-      - PUID=1000
-      - PGID=1000
       - TZ=Europe/Amsterdam
+      - PUID=0
+      - PGID=0
     volumes:
       - ~/.docker/volumes/sickgear:/config
-      - ~/Downloads/watching/:/downloads
-      - ~/Downloads/completed:/tv
+      - /var/nfs/saito/Series:/tv
+      - ~/Downloads/incoming:/downloads/incoming
+      - ~/Downloads/watching:/downloads/watching
     ports:
       - 8081:8081
     restart: unless-stopped
     links:
       - transmission-openvpn
+    dns:
+      - 1.1.1.1
+      - 1.0.0.1
