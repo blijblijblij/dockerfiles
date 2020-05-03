@@ -11,13 +11,12 @@ services:
       - "67:67/udp"
       - "80:80/tcp"
       - "443:443/tcp"
-    environment:
-      TZ: 'Europe/Amsterdam'
-      WEBPASSWORD: 'Lwcc5Ixbh7EQa0X79WpqPpomEjMzmk9I'
+    env_file:
+      - .env
     # Volumes store your data between container upgrades
     volumes:
-       - './etc-pihole/:/etc/pihole/'
-       - './etc-dnsmasq.d/:/etc/dnsmasq.d/'
+       - '~/.docker/volumes/pihole/etc-pihole/:/etc/pihole/'
+       - '~/.docker/volumes/pihole/etc-dnsmasq.d/:/etc/dnsmasq.d/'
     dns:
       - 127.0.0.1
       - 1.1.1.1
