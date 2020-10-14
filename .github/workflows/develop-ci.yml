@@ -63,7 +63,7 @@ jobs:
         with:
           builder: ${{ steps.buildx.outputs.name }}
           context: ./keycloak
-          file: ./Dockerfile
+          file: ./keycloak/Dockerfile
           target: prod
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.prep.outputs.tags }}
