@@ -32,7 +32,7 @@ if [ "$GIT_REPO" != "" ]; then
     cd /opt/jboss
 
     tar xfz /opt/jboss/keycloak-source/distribution/server-dist/target/keycloak-*.tar.gz
-    
+    ls  -al /opt/jboss/keycloak
     mv /opt/jboss/keycloak-?.?.?* /opt/jboss/keycloak
 
     # Remove temporary files
