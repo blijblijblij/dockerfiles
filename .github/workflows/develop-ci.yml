@@ -22,3 +22,6 @@ jobs:
       -
         name: Available platforms
         run: echo ${{ steps.buildx.outputs.platforms }}
+      -
+        name: Build
+        run: docker buildx build --platform linux/arm64,linux/amd64 --push -t blijblijblij/keycloak:v11 -f ./keycloak/Dockerfile  
