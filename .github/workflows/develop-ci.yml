@@ -31,5 +31,6 @@ jobs:
         with:
           context: ./keycloak
           file: ./keycloak/Dockerfile
+          platforms: linux/amd64,linux/arm64
           push: true
           tags: blijblijblij/keycloak:latest-${{ steps.define_env.outputs.github-sha-short }}
